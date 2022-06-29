@@ -1,0 +1,147 @@
+.about-me-section {
+    flex-direction: column;
+    max-width: 900px;
+    align-items: center;
+    margin-inline: auto;
+    p ul {
+        max-width: 500px;
+        margin-inline: auto;
+        &:not(p:last-child) { 
+            margin-bottom: 10px;
+        }
+    }
+    img {
+        // Chrome, Firefox
+        width: -webkit-fill-available;
+        height: -webkit-fill-available;
+        width: -moz-available;
+        height: -moz-available;
+        width: fill-available;
+        height: fill-available;
+    }
+    .inner {
+        display: grid;
+        grid-template-columns: 3fr 2fr;
+        gap: 50px;
+    }
+    ul.skills-list {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(140px, 200px));
+        gap: 8px 10px;
+        margin: 20px 0px 0px;
+        overflow: hidden;
+        list-style: none;
+        font-size: 15px;
+        justify-content: start;
+        li::before {
+            content: "▹";
+            color: var(--light-green);
+            position: relative;
+            left: 0;
+            width: 1rem;
+            line-height: 12px;
+            padding-right: 7px;
+        }
+    }
+    .numbered-heading {
+        display: flex;
+        -webkit-box-align: center;
+        align-items: center;
+        position: relative;
+        margin: 10px 0px 40px;
+        font-family: SansBold;
+        max-width: 900px;
+        align-content: center;
+        font-size: clamp(26px,5vw,30px);
+        white-space: nowrap;
+        color: var(--lightest-slate);
+        &::before {
+            content: '01.';
+            height: 100%;
+            position: relative;
+            top: 4px;
+            margin-right: 10px;
+            color: var(--light-green);
+            font-size: clamp(7px, 3.2vw, 18px);
+            font-weight: 400;
+            font-family: 'mono';
+        }
+        &::after {
+            content: '';
+            display: block;
+            height: 1px;
+            width: 250px;
+            background: var(--slate);
+            margin: 1rem 0 0.8rem 1rem;
+            opacity: 0.3;
+        }
+    }
+}
+
+
+// round edges on pic + pic::after
+.about-right .wrapper .img-container img {
+    border-radius: 4px;
+}
+
+.about-right {
+    position: relative;
+    max-width: 300px;
+    max-height: 265px;
+    margin-inline: auto;
+    .wrapper {
+        display: block;
+        border-radius: 4px;
+        max-width: 500px;
+        background-color: var(--light-green);
+        &::before, &::after {
+            content: "";
+            display: block;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 3px;
+        }
+        &::after {
+            border: 2px solid var(--light-green);
+            top: 20px;
+            left: 20px;
+            z-index: -1;
+            border-radius: 4px;
+            transition: all 250ms ease;
+        }
+        &:hover .img-container {
+            filter: none;
+            mix-blend-mode: unset;
+            transition: all 250ms ease;
+        }
+        // about me pic ::after animation
+        &:hover::after {
+            transition: all 250ms ease;
+            transform: translate(-5px,-5px);
+        }
+        .img-container {
+            mix-blend-mode: multiply;
+            filter: grayscale(100%) contrast(1);
+            border-radius: 4px;
+            transition: all 250ms ease;
+        }
+    }
+}
+
+@media only screen and (max-width: 950px) {
+    .inner {
+        display: block !important;
+    }
+    .wrapper {
+        margin-top: 70px;
+    }
+    .numbered-heading {
+        justify-content: center;
+        width: 100% !important;
+        &::after {
+            width: 100% !important;
+        }
+    }
+}
+
